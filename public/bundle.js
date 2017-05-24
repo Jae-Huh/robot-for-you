@@ -9549,6 +9549,7 @@ var App = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
     _this.state = {
+      loadingImg: false,
       errMessage: null,
       name: '',
       imgUrl: ''
@@ -9575,6 +9576,7 @@ var App = function (_React$Component) {
           imgUrl: jsonResult.imageUrl
         });
       });
+      this.gotRobot.bind(this)();
     }
   }, {
     key: 'handleChange',
@@ -9582,6 +9584,20 @@ var App = function (_React$Component) {
       e.preventDefault();
       this.setState({
         name: e.target.value
+      });
+    }
+  }, {
+    key: 'gotRobot',
+    value: function gotRobot() {
+      this.setState({
+        loadingImg: true
+      });
+    }
+  }, {
+    key: 'imgLoaded',
+    value: function imgLoaded() {
+      this.setState({
+        loadingImg: false
       });
     }
   }, {
@@ -9603,9 +9619,14 @@ var App = function (_React$Component) {
             'button',
             { onClick: this.robotForName.bind(this) },
             'Show my robot face!'
+          ),
+          this.state.loadingImg && _react2.default.createElement(
+            'p',
+            null,
+            'Loading your robot...'
           )
         ),
-        _react2.default.createElement('img', { src: this.state.imgUrl })
+        _react2.default.createElement('img', { src: this.state.imgUrl, onLoad: this.imgLoaded.bind(this) })
       );
     }
   }]);

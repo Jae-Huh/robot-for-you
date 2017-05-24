@@ -6,6 +6,7 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state= {
+      loadingImg: false,
       errMessage: null,
       name: '',
       imgUrl: ''
@@ -27,12 +28,25 @@ class App extends React.Component {
         imgUrl: jsonResult.imageUrl
       })
     })
+    this.gotRobot.bind(this)()
   }
 
   handleChange(e) {
     e.preventDefault()
     this.setState({
       name: e.target.value
+    })
+  }
+
+  gotRobot() {
+    this.setState({
+      loadingImg: true
+    })
+  }
+
+  imgLoaded() {
+    this.setState({
+      loadingImg: false
     })
   }
 
@@ -43,8 +57,9 @@ class App extends React.Component {
         <form>
           <input type="text" name="name" onChange={this.handleChange.bind(this)} placeholder="Type your name here" />
           <button onClick={this.robotForName.bind(this)}>Show my robot face!</button>
+          {this.state.loadingImg && <p>Loading your robot...</p>}
         </form>
-        <img src={this.state.imgUrl} />
+        <img src={this.state.imgUrl} onLoad={this.imgLoaded.bind(this)} />
       </div>
     )
   }
