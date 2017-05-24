@@ -9602,7 +9602,7 @@ var App = function (_React$Component) {
           _react2.default.createElement(
             'button',
             { onClick: this.robotForName.bind(this) },
-            'Show me my robot face!'
+            'Show my robot face!'
           )
         ),
         _react2.default.createElement('img', { src: this.state.imgUrl })

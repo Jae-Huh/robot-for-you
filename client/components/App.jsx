@@ -42,7 +42,7 @@ class App extends React.Component {
         <h1>What's your robot face?</h1>
         <form>
           <input type="text" name="name" onChange={this.handleChange.bind(this)} placeholder="Type your name here" />
-          <button onClick={this.robotForName.bind(this)}>Show me my robot face!</button>
+          <button onClick={this.robotForName.bind(this)}>Show my robot face!</button>
         </form>
         <img src={this.state.imgUrl} />
       </div>
